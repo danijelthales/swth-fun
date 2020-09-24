@@ -83,16 +83,28 @@ export class AppComponent {
       if (asset !== this.swthAsset) {
         this.swthAsset.value = asset.value / asset.price / this.swthAsset.price;
       }
-      this.btcAsset.value = this.swthAsset.value * this.swthAsset.price / this.btcAsset.price;
-      this.ethAsset.value = this.swthAsset.value * this.swthAsset.price / this.ethAsset.price;
-      this.neoAsset.value = this.swthAsset.value * this.swthAsset.price / this.neoAsset.price;
-      this.lamboCollectibleAsset.value = this.swthAsset.value * this.swthAsset.price / this.lamboCollectibleAsset.price;
-      this.toyotaYarisAsset.value = this.swthAsset.value * this.swthAsset.price / this.toyotaYarisAsset.price;
-      this.teslaAsset.value = this.swthAsset.value * this.swthAsset.price / this.teslaAsset.price;
+      if (asset !== this.ethAsset) {
+        this.ethAsset.value = this.swthAsset.value * this.swthAsset.price / this.ethAsset.price;
+      }
+
+      if (asset !== this.neoAsset) {
+        this.neoAsset.value = this.swthAsset.value * this.swthAsset.price / this.neoAsset.price;
+      }
+
+      if (asset !== this.lamboCollectibleAsset) {
+        this.lamboCollectibleAsset.value = this.swthAsset.value * this.swthAsset.price / this.lamboCollectibleAsset.price;
+      }
+
+      if (asset !== this.toyotaYarisAsset) {
+        this.toyotaYarisAsset.value = this.swthAsset.value * this.swthAsset.price / this.toyotaYarisAsset.price;
+      }
+
+      if (asset !== this.teslaAsset) {
+        this.teslaAsset.value = this.swthAsset.value * this.swthAsset.price / this.teslaAsset.price;
+      }
+
     }
   }
-
-
 }
 
 class Asset {
