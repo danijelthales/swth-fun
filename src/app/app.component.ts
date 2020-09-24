@@ -81,7 +81,7 @@ export class AppComponent {
       const val = event.srcElement.value * 1.0;
       asset.value = val;
       if (asset !== this.swthAsset) {
-        this.swthAsset.value = asset.value / asset.price / this.swthAsset.price;
+        this.swthAsset.value = asset.value * asset.price / this.swthAsset.price;
       }
 
       if (asset !== this.btcAsset) {
