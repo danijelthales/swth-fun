@@ -83,6 +83,11 @@ export class AppComponent {
       if (asset !== this.swthAsset) {
         this.swthAsset.value = asset.value / asset.price / this.swthAsset.price;
       }
+
+      if (asset !== this.btcAsset) {
+        this.btcAsset.value = this.swthAsset.value * this.swthAsset.price / this.btcAsset.price;
+      }
+
       if (asset !== this.ethAsset) {
         this.ethAsset.value = this.swthAsset.value * this.swthAsset.price / this.ethAsset.price;
       }
