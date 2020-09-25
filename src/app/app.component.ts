@@ -9,113 +9,156 @@ import {HttpClient} from '@angular/common/http';
 export class AppComponent {
   title = 'swth-fun';
 
-  assets: Asset[] = new Array();
+  assetsToShow: Asset[] = new Array();
+  remainingAssets: Asset[] = new Array();
 
   swthAsset: Asset;
   btcAsset: Asset;
   ethAsset: Asset;
   neoAsset: Asset;
+  linkAsset: Asset;
+  dotAsset: Asset;
+  bnbAsset: Asset;
+  bchAsset: Asset;
+
   lamboCollectibleAsset: Asset;
   toyotaYarisAsset: Asset;
   teslaAsset: Asset;
 
   constructor(private httpClient: HttpClient) {
     this.swthAsset = new Asset('0', 'swth');
-    this.assets.push(this.swthAsset);
+    this.assetsToShow.push(this.swthAsset);
     this.swthAsset.value = 500000;
+    this.swthAsset.coingeckoname = 'switcheo';
+
     this.btcAsset = new Asset('0', 'btc');
-    this.assets.push(this.btcAsset);
+    this.assetsToShow.push(this.btcAsset);
+    this.btcAsset.coingeckoname = 'bitcoin';
+
     this.ethAsset = new Asset('0', 'eth');
-    this.assets.push(this.ethAsset);
+    this.assetsToShow.push(this.ethAsset);
+    this.ethAsset.coingeckoname = 'ethereum';
+
     this.neoAsset = new Asset('0', 'neo');
-    this.assets.push(this.neoAsset);
+    this.assetsToShow.push(this.neoAsset);
+    this.neoAsset.coingeckoname = 'neo';
+
     this.lamboCollectibleAsset = new Asset('748', 'Lamborghini Aventador SVJ collectible');
-    this.assets.push(this.lamboCollectibleAsset);
+    this.assetsToShow.push(this.lamboCollectibleAsset);
     this.toyotaYarisAsset = new Asset('15650', 'Toyota Yaris');
-    this.assets.push(this.toyotaYarisAsset);
+    this.assetsToShow.push(this.toyotaYarisAsset);
     this.teslaAsset = new Asset('39900', 'Tesla Cybertruck');
-    this.assets.push(this.teslaAsset);
+    this.assetsToShow.push(this.teslaAsset);
+
+    this.linkAsset = new Asset('0', 'link');
+    this.remainingAssets.push(this.linkAsset);
+    this.linkAsset.coingeckoname = 'link';
+
+    this.dotAsset = new Asset('0', 'dot');
+    this.remainingAssets.push(this.dotAsset);
+    this.dotAsset.coingeckoname = 'polkadot';
+
+
+    this.bnbAsset = new Asset('0', 'bnb');
+    this.remainingAssets.push(this.bnbAsset);
+    this.bnbAsset.coingeckoname = 'binancecoin';
+
+    this.bchAsset = new Asset('0', 'bch');
+    this.remainingAssets.push(this.bchAsset);
+    this.bchAsset.coingeckoname = 'bitcoin-cash';
 
     this.getPrices();
+
+    setInterval(this.getPrices, 1000 * 60);
 
   }
 
   public getPrices() {
 
-
-    this.httpClient.get('https://api.coingecko.com/api/v3/coins/switcheo')
-      .subscribe((data: object) => {
-        const result = JSON.parse(JSON.stringify(data));
-        this.swthAsset.price = result.market_data.current_price.usd;
-        this.httpClient.get('https://api.coingecko.com/api/v3/coins/bitcoin')
-          .subscribe((databtc: string) => {
-            const resultbtc = JSON.parse(JSON.stringify(databtc));
-            this.btcAsset.price = resultbtc.market_data.current_price.usd;
-            this.httpClient.get('https://api.coingecko.com/api/v3/coins/ethereum')
-              .subscribe((dataeth: string) => {
-                const resulteth = JSON.parse(JSON.stringify(dataeth));
-                this.ethAsset.price = resulteth.market_data.current_price.usd;
-                this.httpClient.get('https://api.coingecko.com/api/v3/coins/neo')
-                  .subscribe((dataneo: string) => {
-                    const resultneo = JSON.parse(JSON.stringify(dataneo));
-                    this.neoAsset.price = resultneo.market_data.current_price.usd;
-                    this.calculateValues(this.swthAsset, null);
-                  });
-              });
+    this.assetsToShow.forEach(a => {
+      if (a.coingeckoname) {
+        this.httpClient.get('https://api.coingecko.com/api/v3/coins/' + a.coingeckoname)
+          .subscribe((data: object) => {
+            const result = JSON.parse(JSON.stringify(data));
+            a.price = result.market_data.current_price.usd;
+            this.calculateValues(this.swthAsset, null);
           });
-      });
+      }
+    });
 
+    this.remainingAssets.forEach(a => {
+      if (a.coingeckoname) {
+        this.httpClient.get('https://api.coingecko.com/api/v3/coins/' + a.coingeckoname)
+          .subscribe((data: object) => {
+            const result = JSON.parse(JSON.stringify(data));
+            a.price = result.market_data.current_price.usd;
+            this.calculateValues(this.swthAsset, null);
+          });
+      }
+    });
 
   }
 
 
   public calculateValues(asset: Asset, event) {
     if (event == null) {
-      this.btcAsset.value = this.swthAsset.value * this.swthAsset.price / this.btcAsset.price;
-      this.ethAsset.value = this.swthAsset.value * this.swthAsset.price / this.ethAsset.price;
-      this.neoAsset.value = this.swthAsset.value * this.swthAsset.price / this.neoAsset.price;
-      this.lamboCollectibleAsset.value = this.swthAsset.value * this.swthAsset.price / this.lamboCollectibleAsset.price;
-      this.toyotaYarisAsset.value = this.swthAsset.value * this.swthAsset.price / this.toyotaYarisAsset.price;
-      this.teslaAsset.value = this.swthAsset.value * this.swthAsset.price / this.teslaAsset.price;
+      this.assetsToShow.forEach(a => {
+        if (a !== asset) {
+          a.value = asset.value * asset.price / a.price;
+        }
+      });
+      this.remainingAssets.forEach(a => {
+        if (a !== asset) {
+          a.value = asset.value * asset.price / a.price;
+        }
+      });
     } else {
       const val = event.srcElement.value * 1.0;
       asset.value = val;
-      if (asset !== this.swthAsset) {
-        this.swthAsset.value = asset.value * asset.price / this.swthAsset.price;
-      }
 
-      if (asset !== this.btcAsset) {
-        this.btcAsset.value = this.swthAsset.value * this.swthAsset.price / this.btcAsset.price;
-      }
-
-      if (asset !== this.ethAsset) {
-        this.ethAsset.value = this.swthAsset.value * this.swthAsset.price / this.ethAsset.price;
-      }
-
-      if (asset !== this.neoAsset) {
-        this.neoAsset.value = this.swthAsset.value * this.swthAsset.price / this.neoAsset.price;
-      }
-
-      if (asset !== this.lamboCollectibleAsset) {
-        this.lamboCollectibleAsset.value = this.swthAsset.value * this.swthAsset.price / this.lamboCollectibleAsset.price;
-      }
-
-      if (asset !== this.toyotaYarisAsset) {
-        this.toyotaYarisAsset.value = this.swthAsset.value * this.swthAsset.price / this.toyotaYarisAsset.price;
-      }
-
-      if (asset !== this.teslaAsset) {
-        this.teslaAsset.value = this.swthAsset.value * this.swthAsset.price / this.teslaAsset.price;
-      }
+      this.assetsToShow.forEach(a => {
+        if (a !== asset) {
+          a.value = asset.value * asset.price / a.price;
+        }
+      });
+      this.remainingAssets.forEach(a => {
+        if (a !== asset) {
+          a.value = asset.value * asset.price / a.price;
+        }
+      });
 
     }
   }
+
+  public addAsset(event) {
+    const name = event.target.value;
+    this.remainingAssets.forEach(a => {
+      if (a.name === name) {
+        this.assetsToShow.push(a);
+      }
+    });
+    this.remainingAssets = this.remainingAssets.filter(el => {
+      return el.name !== name;
+    });
+
+  }
+
+  public removeAsset(asset: Asset) {
+    this.assetsToShow = this.assetsToShow.filter(el => {
+      return el.name !== asset.name;
+    });
+    this.remainingAssets.push(asset);
+  }
+
+
 }
+
 
 class Asset {
   price: number;
   name: string;
   value: number;
+  coingeckoname: string;
 
   constructor(price, name) {
     this.price = price;
