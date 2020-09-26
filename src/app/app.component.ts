@@ -80,6 +80,7 @@ export class AppComponent {
       if (a.coingeckoname) {
         this.httpClient.get('https://api.coingecko.com/api/v3/coins/' + a.coingeckoname)
           .subscribe((data: object) => {
+            console.log(data);
             const result = JSON.parse(JSON.stringify(data));
             a.price = result.market_data.current_price.usd;
             this.calculateValues(this.swthAsset, null);
@@ -91,6 +92,7 @@ export class AppComponent {
       if (a.coingeckoname) {
         this.httpClient.get('https://api.coingecko.com/api/v3/coins/' + a.coingeckoname)
           .subscribe((data: object) => {
+            console.log(data);
             const result = JSON.parse(JSON.stringify(data));
             a.price = result.market_data.current_price.usd;
             this.calculateValues(this.swthAsset, null);

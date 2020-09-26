@@ -25,9 +25,12 @@
 
 .footer {
   width: 100%;
-  text-align: center;
+  display: flex;
+  justify-content: center;
   padding: 20px;
-  background: lightgray;
+  background: rgb(31, 30, 30);
+  background: linear-gradient(90deg, rgba(31, 30, 30, 1) 17%, rgba(21, 59, 44, 1) 59%, rgba(31, 30, 30, 1) 100%);
+  color: white;
 }
 
 .images {
@@ -44,4 +47,48 @@ input {
 
 .deleteButton {
   margin-left: 6px;
+}
+
+.extLink {
+  font-size: 16px;
+  color: white;
+  margin: 4px;
+  text-transform: uppercase;
+}
+
+.asset {
+  display: flex;
+  align-items: center;
+
+  .coinInfo {
+    display: flex;
+    margin-right: 40px;
+    width: 150px;
+
+    .logo {
+      height: 40px;
+      object-fit: contain;
+      margin-right: 20px;
+    }
+
+    .coinNameWrapper {
+      width: 100%;
+    }
+
+    .coinName {
+      text-transform: uppercase;
+      font-size: 20px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .coinFullName {
+      text-transform: lowercase;
+      font-size: 14px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
 }

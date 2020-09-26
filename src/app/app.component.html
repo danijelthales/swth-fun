@@ -3,14 +3,24 @@
     <img class="images"
          src="../assets/imgs/asset1.png" />
     <div class="assets">
-      <div *ngFor="let asset of assetsToShow">
+      <div class="asset"
+           *ngFor="let asset of assetsToShow">
+        <span class="coinInfo">
+          <img class="logo"
+               *ngIf="asset.coingeckoname"
+               src="../assets/logos/{{asset.coingeckoname}}.png" />
+          <div class="coinNameWrapper">
+            <p class="coinName">{{asset.name}}</p>
+            <p class="coinFullName">{{asset.coingeckoname}}</p>
+          </div>
+        </span>
+
         <input class="values"
                type="text"
                id="{{asset.name}}"
                name="{{asset.name}}"
                value="{{asset.value}}"
                (input)="calculateValues(asset, $event)">
-        <label for="{{asset.name}}">{{asset.name}}</label>
         <button class="deleteButton"
                 mat-button
                 (click)="removeAsset(asset)">
@@ -37,10 +47,17 @@
   </div>
 
   <footer class="footer">
-    <p><span class="heart">♡</span><a href="https://switcheo.network/">switcheo network</a></p>
-    <p><span class="heart">♡</span><a href="https://switcheo.exchange/markets/SWTH_NEO?soft=orderbook">SWTH_NEO</a></p>
-    <p><span class="heart">♡</span><a href="https://switcheo.foundation/">switcheo foundation</a></p>
-    <p><span class="heart">♡</span><a href="https://dem.exchange/">demex</a></p>
-    <p><span class="heart">♡</span><a href="https://t.me/switcheomonitorbot">switcheo monitor bot</a></p>
+    <div>
+      <p><span class="heart">♡</span><a class="extLink"
+           href="https://switcheo.network/">switcheo network</a></p>
+      <p><span class="heart">♡</span><a class="extLink"
+           href="https://switcheo.exchange/markets/SWTH_NEO?soft=orderbook">SWTH_NEO</a></p>
+      <p><span class="heart">♡</span><a class="extLink"
+           href="https://switcheo.foundation/">switcheo foundation</a></p>
+      <p><span class="heart">♡</span><a class="extLink"
+           href="https://dem.exchange/">demex</a></p>
+      <p><span class="heart">♡</span><a class="extLink"
+           href="https://t.me/switcheomonitorbot">switcheo monitor bot</a></p>
+    </div>
   </footer>
 </div>
