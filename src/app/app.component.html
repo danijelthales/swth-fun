@@ -1,28 +1,40 @@
 <div class="holder">
-  SWTH FUN
-
-
-  <div class="assets">
-    <div *ngFor="let asset of assetsToShow">
-      <input class="values" type="text" id="{{asset.name}}" name="{{asset.name}}" value="{{asset.value}}"
-             (input)="calculateValues(asset, $event)">
-      <label for="{{asset.name}}">{{asset.name}}</label>
-      &nbsp;
-      <button mat-button (click)="removeAsset(asset)">
-        <mat-icon aria-hidden="false" aria-label="Example home icon">clear</mat-icon>
-      </button>
+  <div class="content">
+    <img class="images"
+         src="../assets/imgs/asset1.png" />
+    <div class="assets">
+      <div *ngFor="let asset of assetsToShow">
+        <input class="values"
+               type="text"
+               id="{{asset.name}}"
+               name="{{asset.name}}"
+               value="{{asset.value}}"
+               (input)="calculateValues(asset, $event)">
+        <label for="{{asset.name}}">{{asset.name}}</label>
+        <button class="deleteButton"
+                mat-button
+                (click)="removeAsset(asset)">
+          <mat-icon aria-hidden="false"
+                    aria-label="Example home icon">clear</mat-icon>
+        </button>
+      </div>
+      <div>
+        <mat-form-field appearance="fill">
+          <select matNativeControl
+                  required
+                  (change)="addAsset($event)">
+            <option *ngFor="let asset of remainingAssets"
+                    [value]="asset.name">
+              {{asset.name}}
+            </option>
+          </select>
+        </mat-form-field>
+      </div>
     </div>
-    <div>
-      <mat-form-field appearance="fill">
-        <select matNativeControl required (change)="addAsset($event)">
-          <option *ngFor="let asset of remainingAssets" [value]="asset.name">
-            {{asset.name}}
-          </option>
-        </select>
-      </mat-form-field>
-    </div>
+
+    <img class="images"
+         src="../assets/imgs/asset2.png" />
   </div>
-
 
   <footer class="footer">
     <p><span class="heart">♡</span><a href="https://switcheo.network/">switcheo network</a></p>
@@ -31,6 +43,4 @@
     <p><span class="heart">♡</span><a href="https://dem.exchange/">demex</a></p>
     <p><span class="heart">♡</span><a href="https://t.me/switcheomonitorbot">switcheo monitor bot</a></p>
   </footer>
-
 </div>
-
