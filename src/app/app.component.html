@@ -10,7 +10,8 @@
                *ngIf="asset.coingeckoname"
                src="../assets/logos/{{asset.coingeckoname}}.png" />
           <div class="coinNameWrapper">
-            <p class="coinName">{{asset.name}}</p>
+            <p title="{{asset.name}}"
+               class="coinName">{{asset.name}}</p>
             <p class="coinFullName">{{asset.coingeckoname}}</p>
           </div>
         </span>
@@ -22,25 +23,23 @@
                value="{{asset.value}}"
                (input)="calculateValues(asset, $event)">
         <button class="deleteButton"
-                mat-button
                 (click)="removeAsset(asset)">
           <mat-icon aria-hidden="false"
                     aria-label="Example home icon">clear</mat-icon>
         </button>
       </div>
-      <div>
-        <mat-form-field appearance="fill">
-          <select matNativeControl
-                  required
-                  (change)="addAsset($event)">
-            <option *ngFor="let asset of remainingAssets"
-                    [value]="asset.name">
-              {{asset.name}}
-            </option>
-          </select>
-        </mat-form-field>
+
+      <div class="select">
+        <select (change)="addAsset($event)">
+          <option selected>Add Currency...</option>
+          <option *ngFor="let asset of remainingAssets"
+                  [value]="asset.name">
+            {{asset.coingeckoname ?  asset.coingeckoname : asset.name}}
+          </option>
+        </select>
       </div>
     </div>
+
 
     <img class="images"
          src="../assets/imgs/asset2.png" />
