@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { Component } from '@angular/core';
+import { Asset } from '@models/assets';
 
 @Component({
   selector: 'app-root',
@@ -26,44 +27,44 @@ export class AppComponent {
   teslaAsset: Asset;
 
   constructor(private httpClient: HttpClient) {
-    this.swthAsset = new Asset('0', 'swth');
+    this.swthAsset = new Asset(0, 'swth');
     this.assetsToShow.push(this.swthAsset);
     this.swthAsset.value = 500000;
     this.swthAsset.coingeckoname = 'switcheo';
 
-    this.btcAsset = new Asset('0', 'btc');
+    this.btcAsset = new Asset(0, 'btc');
     this.assetsToShow.push(this.btcAsset);
     this.btcAsset.coingeckoname = 'bitcoin';
 
-    this.ethAsset = new Asset('0', 'eth');
+    this.ethAsset = new Asset(0, 'eth');
     this.assetsToShow.push(this.ethAsset);
     this.ethAsset.coingeckoname = 'ethereum';
 
-    this.neoAsset = new Asset('0', 'neo');
+    this.neoAsset = new Asset(0, 'neo');
     this.assetsToShow.push(this.neoAsset);
     this.neoAsset.coingeckoname = 'neo';
 
-    this.lamboCollectibleAsset = new Asset('748', 'Lamborghini Aventador SVJ collectible');
+    this.lamboCollectibleAsset = new Asset(748, 'Lamborghini Aventador SVJ collectible');
     this.assetsToShow.push(this.lamboCollectibleAsset);
-    this.toyotaYarisAsset = new Asset('15650', 'Toyota Yaris');
+    this.toyotaYarisAsset = new Asset(15650, 'Toyota Yaris');
     this.assetsToShow.push(this.toyotaYarisAsset);
-    this.teslaAsset = new Asset('39900', 'Tesla Cybertruck');
+    this.teslaAsset = new Asset(39900, 'Tesla Cybertruck');
     this.assetsToShow.push(this.teslaAsset);
 
-    this.linkAsset = new Asset('0', 'link');
+    this.linkAsset = new Asset(0, 'link');
     this.remainingAssets.push(this.linkAsset);
     this.linkAsset.coingeckoname = 'link';
 
-    this.dotAsset = new Asset('0', 'dot');
+    this.dotAsset = new Asset(0, 'dot');
     this.remainingAssets.push(this.dotAsset);
     this.dotAsset.coingeckoname = 'polkadot';
 
 
-    this.bnbAsset = new Asset('0', 'bnb');
+    this.bnbAsset = new Asset(0, 'bnb');
     this.remainingAssets.push(this.bnbAsset);
     this.bnbAsset.coingeckoname = 'binancecoin';
 
-    this.bchAsset = new Asset('0', 'bch');
+    this.bchAsset = new Asset(0, 'bch');
     this.remainingAssets.push(this.bchAsset);
     this.bchAsset.coingeckoname = 'bitcoin-cash';
 
@@ -151,17 +152,4 @@ export class AppComponent {
   }
 
 
-}
-
-
-class Asset {
-  price: number;
-  name: string;
-  value: number;
-  coingeckoname: string;
-
-  constructor(price, name) {
-    this.price = price;
-    this.name = name;
-  }
 }
