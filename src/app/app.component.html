@@ -1,10 +1,17 @@
 <div class="holder">
   <div class="content">
+
     <img class="images"
          src="../assets/imgs/asset1.png" />
-    <div class="assets">
-      <div class="asset"
-           *ngFor="let asset of assetsToShow">
+
+
+
+    <div cdkDropList
+         class="assets"
+         (cdkDropListDropped)="drop($event)">
+      <div class="example-box asset"
+           *ngFor="let asset of assetsToShow"
+           cdkDrag>
         <span class="coinInfo">
           <img class="logo"
                *ngIf="asset.coingeckoname"
@@ -28,35 +35,38 @@
                     aria-label="Example home icon">clear</mat-icon>
         </button>
       </div>
-
-      <div class="select">
-        <select (change)="addAsset($event)">
-          <option selected>Add Currency...</option>
-          <option *ngFor="let asset of remainingAssets"
-                  [value]="asset.name">
-            {{asset.coingeckoname ?  asset.coingeckoname : asset.name}}
-          </option>
-        </select>
-      </div>
     </div>
 
 
-    <img class="images"
-         src="../assets/imgs/asset2.png" />
+    <div class="select">
+      <select (change)="addAsset($event)">
+        <option selected>Add Currency...</option>
+        <option *ngFor="let asset of remainingAssets"
+                [value]="asset.name">
+          {{asset.coingeckoname ?  asset.coingeckoname : asset.name}}
+        </option>
+      </select>
+    </div>
   </div>
 
-  <footer class="footer">
-    <div>
-      <p><span class="heart">♡</span><a class="extLink"
-           href="https://switcheo.network/">switcheo network</a></p>
-      <p><span class="heart">♡</span><a class="extLink"
-           href="https://switcheo.exchange/markets/SWTH_NEO?soft=orderbook">SWTH_NEO</a></p>
-      <p><span class="heart">♡</span><a class="extLink"
-           href="https://switcheo.foundation/">switcheo foundation</a></p>
-      <p><span class="heart">♡</span><a class="extLink"
-           href="https://dem.exchange/">demex</a></p>
-      <p><span class="heart">♡</span><a class="extLink"
-           href="https://t.me/switcheomonitorbot">switcheo monitor bot</a></p>
-    </div>
-  </footer>
+
+  <img class="images"
+       src="../assets/imgs/asset2.png" />
 </div>
+
+<footer class="footer">
+  <!-- <img class="images"
+       src="../assets/imgs/asset3.png" /> -->
+  <div>
+    <p><span class="heart">♡</span><a class="extLink"
+         href="https://switcheo.network/">switcheo network</a></p>
+    <p><span class="heart">♡</span><a class="extLink"
+         href="https://switcheo.exchange/markets/SWTH_NEO?soft=orderbook">SWTH_NEO</a></p>
+    <p><span class="heart">♡</span><a class="extLink"
+         href="https://switcheo.foundation/">switcheo foundation</a></p>
+    <p><span class="heart">♡</span><a class="extLink"
+         href="https://dem.exchange/">demex</a></p>
+    <p><span class="heart">♡</span><a class="extLink"
+         href="https://t.me/switcheomonitorbot">switcheo monitor bot</a></p>
+  </div>
+</footer>

@@ -1,3 +1,4 @@
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Asset } from '@models/assets';
@@ -80,7 +81,6 @@ export class AppComponent {
       if (a.coingeckoname) {
         this.httpClient.get('https://api.coingecko.com/api/v3/coins/' + a.coingeckoname)
           .subscribe((data: object) => {
-            console.log(data);
             const result = JSON.parse(JSON.stringify(data));
             a.price = result.market_data.current_price.usd;
             this.calculateValues(this.swthAsset, null);
@@ -92,7 +92,6 @@ export class AppComponent {
       if (a.coingeckoname) {
         this.httpClient.get('https://api.coingecko.com/api/v3/coins/' + a.coingeckoname)
           .subscribe((data: object) => {
-            console.log(data);
             const result = JSON.parse(JSON.stringify(data));
             a.price = result.market_data.current_price.usd;
             this.calculateValues(this.swthAsset, null);
@@ -151,6 +150,10 @@ export class AppComponent {
       return el.name !== asset.name;
     });
     this.remainingAssets.push(asset);
+  }
+
+  drop(event: CdkDragDrop<Asset[]>) {
+    moveItemInArray(this.assetsToShow, event.previousIndex, event.currentIndex);
   }
 
 
