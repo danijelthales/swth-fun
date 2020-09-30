@@ -2,6 +2,7 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {HttpClient} from '@angular/common/http';
 import {Component} from '@angular/core';
 import {Asset} from '@models/assets';
+import {interval} from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -137,7 +138,8 @@ export class AppComponent {
 
     this.getPrices(this.assetsToShow, this.remainingAssets);
 
-    setInterval(this.getPrices, 1000 * 60);
+    const source = interval(1000 * 60);
+    source.subscribe(val => this.getPrices(this.assetsToShow, this.remainingAssets));
 
   }
 
