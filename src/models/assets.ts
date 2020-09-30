@@ -3,6 +3,7 @@ export class Asset {
     name: string;
     value: number;
     coingeckoname: string;
+    logo: string;
 
     constructor(price: number, name: string) {
         this.price = price;
