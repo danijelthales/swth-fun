@@ -135,15 +135,15 @@ export class AppComponent {
     this.nexAsset.coingeckoname = 'neon-exchange';
     this.nexAsset.logo = 'neon-exchange';
 
-    this.getPrices();
+    this.getPrices(this.assetsToShow, this.remainingAssets);
 
     setInterval(this.getPrices, 1000 * 60);
 
   }
 
-  public getPrices() {
+  public getPrices(assetsToShow, remainingAssets) {
 
-    this.assetsToShow.forEach(a => {
+    assetsToShow.forEach(a => {
       if (a.coingeckoname) {
         this.httpClient.get('https://api.coingecko.com/api/v3/coins/' + a.coingeckoname)
           .subscribe((data: object) => {
@@ -154,7 +154,7 @@ export class AppComponent {
       }
     });
 
-    this.remainingAssets.forEach(a => {
+    remainingAssets.forEach(a => {
       if (a.coingeckoname) {
         this.httpClient.get('https://api.coingecko.com/api/v3/coins/' + a.coingeckoname)
           .subscribe((data: object) => {

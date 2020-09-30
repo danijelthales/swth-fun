@@ -2,8 +2,7 @@
   <div class="content">
 
     <img class="images"
-         src="../assets/imgs/asset1.png" />
-
+         src="../assets/imgs/asset1.png"/>
 
 
     <div cdkDropList
@@ -12,14 +11,19 @@
       <div class="example-box asset"
            *ngFor="let asset of assetsToShow"
            cdkDrag>
-        <div class="coinInfo">
+        <div class="coinInfo" [ngClass]="!asset.coingeckoname?'carInfo':''">
           <img class="logo"
                *ngIf="asset.logo"
-               src="../assets/logos/{{asset.logo}}.png" />
-          <div class="coinNameWrapper">
+               src="../assets/logos/{{asset.logo}}.png"/>
+          <div class="coinNameWrapper" *ngIf="asset.coingeckoname">
             <p title="{{asset.name}}"
                class="coinName">{{asset.name}}</p>
             <p class="coinFullName">{{asset.coingeckoname}}</p>
+          </div>
+          <div class="carNameWrapper" *ngIf="!asset.coingeckoname">
+            <p title="{{asset.name}}" class="coinName">
+              {{asset.name}}
+            </p>
           </div>
         </div>
 
@@ -32,7 +36,8 @@
         <button class="deleteButton"
                 (click)="removeAsset(asset)">
           <mat-icon aria-hidden="false"
-                    aria-label="Example home icon">clear</mat-icon>
+                    aria-label="Example home icon">clear
+          </mat-icon>
         </button>
       </div>
     </div>
@@ -40,10 +45,10 @@
 
     <div class="select">
       <select (change)="addAsset($event)">
-        <option selected>Add Currency...</option>
+        <option selected>Add Item...</option>
         <option *ngFor="let asset of remainingAssets"
                 [value]="asset.name">
-          {{asset.coingeckoname ?  asset.coingeckoname : asset.name}}
+          {{asset.name.toUpperCase()}}
         </option>
       </select>
     </div>
@@ -51,22 +56,31 @@
 
 
   <img class="images"
-       src="../assets/imgs/asset2.png" />
+       src="../assets/imgs/asset2.png"/>
+
+  <div class="disclaimer">
+    The figures shown on Swthla are mid-market rates (updated every minute), which are for information purposes only.
+    Rates for actual transactions may vary, hence these rates are not intended to be used for investment purposes. Car
+    prices are for reference only and may vary by region.
+    The product names, logos, and brands are property of their respective owners.
+  </div>
 </div>
+
 
 <footer class="footer">
   <!-- <img class="images"
        src="../assets/imgs/asset3.png" /> -->
   <div>
-    <p><span class="heart">♡</span><a class="extLink"
-         href="https://switcheo.network/">switcheo network</a></p>
-    <p><span class="heart">♡</span><a class="extLink"
-         href="https://switcheo.exchange/markets/SWTH_NEO?soft=orderbook">SWTH_NEO</a></p>
-    <p><span class="heart">♡</span><a class="extLink"
-         href="https://switcheo.foundation/">switcheo foundation</a></p>
-    <p><span class="heart">♡</span><a class="extLink"
-         href="https://dem.exchange/">demex</a></p>
-    <p><span class="heart">♡</span><a class="extLink"
-         href="https://t.me/switcheomonitorbot">switcheo monitor bot</a></p>
+    <p><span class="heart">&hearts;</span><a class="extLink"
+                                             href="https://switcheo.network/">switcheo network</a></p>
+    <p><span class="heart">&hearts;</span><a class="extLink"
+                                             href="https://switcheo.exchange/markets/SWTH_NEO?soft=orderbook">SWTH_NEO</a>
+    </p>
+    <p><span class="heart">&hearts;</span><a class="extLink"
+                                             href="https://switcheo.foundation/">switcheo foundation</a></p>
+    <p><span class="heart">&hearts;</span><a class="extLink"
+                                             href="https://dem.exchange/">demex</a></p>
+    <p><span class="heart">&hearts;</span><a class="extLink"
+                                             href="https://t.me/switcheomonitorbot">switcheo monitor bot</a></p>
   </div>
 </footer>

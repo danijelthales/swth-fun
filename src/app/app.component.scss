@@ -1,5 +1,4 @@
 .holder {
-  min-width: 100vw;
   min-height: 100vh;
   overflow: hidden;
   display: flex;
@@ -30,13 +29,14 @@
   background: rgb(31, 30, 30);
   background: linear-gradient(90deg, rgba(31, 30, 30, 1) 17%, rgba(21, 59, 44, 1) 59%, rgba(31, 30, 30, 1) 100%);
   color: white;
+  font-family: "Segoe Print";
 }
 
 .images {
   display: block;
   max-width: 100%;
   object-fit: contain;
-  max-height: 600px;
+  max-height: 400px;
 }
 
 input {
@@ -81,6 +81,7 @@ input {
 
     .coinNameWrapper {
       width: 100%;
+      font-family: Consolas;
     }
 
     .coinName {
@@ -214,4 +215,27 @@ select::-ms-expand {
     width: 300px;
     margin-top: 10px;
   }
+}
+
+.disclaimer{
+  color: gray;
+  text-align: justify;
+  width: 50%;
+  padding-bottom: 5em;
+  font-family: "Segoe Print";
+}
+
+.heart{
+  color: red;
+  fill: red;
+}
+
+.carNameWrapper p{
+  text-transform: none !important;
+  font-size: 15px !important;
+}
+
+.carInfo{
+  display: block !important;
+  text-align: center !important;
 }
