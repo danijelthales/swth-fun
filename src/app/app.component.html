@@ -18,7 +18,7 @@
           <div class="coinNameWrapper" *ngIf="asset.coingeckoname">
             <p title="{{asset.name}}"
                class="coinName">{{asset.name}}</p>
-            <p class="coinFullName">{{asset.coingeckoname}}</p>
+            <p class="coinFullName">{{asset.newname ? asset.newname : asset.coingeckoname}}</p>
           </div>
           <div class="carNameWrapper" *ngIf="!asset.coingeckoname">
             <p title="{{asset.name}}" class="coinName">
@@ -71,16 +71,16 @@
   <!-- <img class="images"
        src="../assets/imgs/asset3.png" /> -->
   <div>
-    <p><span class="heart">&hearts;</span><a class="extLink"
+    <p><span class="heart">&hearts;</span><a class="extLink" target="_blank"
                                              href="https://switcheo.network/">switcheo network</a></p>
-    <p><span class="heart">&hearts;</span><a class="extLink"
-                                             href="https://switcheo.exchange/markets/SWTH_NEO?soft=orderbook">SWTH_NEO</a>
+    <p><span class="heart">&hearts;</span><a class="extLink" target="_blank"
+                                             href="https://switcheo.exchange">switcheo exchange</a>
     </p>
-    <p><span class="heart">&hearts;</span><a class="extLink"
+    <p><span class="heart">&hearts;</span><a class="extLink" target="_blank "
                                              href="https://switcheo.foundation/">switcheo foundation</a></p>
-    <p><span class="heart">&hearts;</span><a class="extLink"
+    <p><span class="heart">&hearts;</span><a class="extLink" target="_blank"
                                              href="https://dem.exchange/">demex</a></p>
-    <p><span class="heart">&hearts;</span><a class="extLink"
+    <p><span class="heart">&hearts;</span><a class="extLink" target="_blank"
                                              href="https://t.me/switcheomonitorbot">switcheo monitor bot</a></p>
   </div>
 </footer>

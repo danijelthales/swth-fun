@@ -119,6 +119,7 @@ export class AppComponent {
     this.snxAsset = new Asset(0, 'snx');
     this.remainingAssets.push(this.snxAsset);
     this.snxAsset.coingeckoname = 'havven';
+    this.snxAsset.newname = 'snx';
     this.snxAsset.logo = 'havven';
 
     this.atomAsset = new Asset(0, 'atom');
@@ -134,6 +135,7 @@ export class AppComponent {
     this.nexAsset = new Asset(0, 'nex');
     this.remainingAssets.push(this.nexAsset);
     this.nexAsset.coingeckoname = 'neon-exchange';
+    this.nexAsset.newname = 'nash';
     this.nexAsset.logo = 'neon-exchange';
 
     this.getPrices(this.assetsToShow, this.remainingAssets);
