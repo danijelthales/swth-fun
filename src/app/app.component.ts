@@ -12,6 +12,8 @@ import {interval} from 'rxjs';
 export class AppComponent {
   title = 'swth-fun';
 
+  disclaimer = 'The figures shown on Swthla are mid-market rates (updated every minute), which are for information purposes only. Rates for actual transactions may vary, hence these rates are not intended to be used for investment purposes. Car prices are for reference only and may vary by region. The product names, logos, and brands are property of their respective owners.';
+
   assetsToShow: Asset[] = new Array();
   remainingAssets: Asset[] = new Array();
 
@@ -69,7 +71,7 @@ export class AppComponent {
 
     this.lamboCollectibleAsset = new Asset(830, 'Lamborghini Aventador SVJ collectible');
     this.assetsToShow.push(this.lamboCollectibleAsset);
-    this.lamboCollectibleAsset.logo = 'collectible';
+    this.lamboCollectibleAsset.logo = 'lamboColl';
 
     this.kiaSeltosAsset = new Asset(24190, 'Kia Seltos');
     this.assetsToShow.push(this.kiaSeltosAsset);
