@@ -37,6 +37,7 @@
                  id="{{asset.name}}"
                  name="{{asset.name}}"
                  value="{{asset.value}}"
+                 maxlength="13"
                  (input)="calculateValues(asset, $event)">
           <button class="deleteButton"
                   (click)="removeAsset(asset)">
