@@ -119,7 +119,7 @@ export class AppComponent {
     this.snxAsset = new Asset(0, 'snx');
     this.remainingAssets.push(this.snxAsset);
     this.snxAsset.coingeckoname = 'havven';
-    this.snxAsset.newname = 'snx';
+    this.snxAsset.newname = 'synthetix';
     this.snxAsset.logo = 'havven';
 
     this.atomAsset = new Asset(0, 'atom');
