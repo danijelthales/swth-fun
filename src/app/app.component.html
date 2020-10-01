@@ -2,61 +2,71 @@
   <div class="content">
 
     <img class="images"
-         src="../assets/imgs/asset1.png"/>
+         src="../assets/imgs/asset1.png" />
 
 
     <div cdkDropList
          class="assets"
          (cdkDropListDropped)="drop($event)">
-      <div class="example-box asset"
-           *ngFor="let asset of assetsToShow"
-           cdkDrag>
-        <div class="coinInfo" [ngClass]="!asset.coingeckoname?'carInfo':''">
-          <img class="logo"
-               *ngIf="asset.logo"
-               src="../assets/logos/{{asset.logo}}.png"/>
-          <div class="coinNameWrapper" *ngIf="asset.coingeckoname">
-            <p title="{{asset.name}}"
-               class="coinName">{{asset.name}}</p>
-            <p class="coinFullName">{{asset.newname ? asset.newname : asset.coingeckoname}}</p>
+      <ng-container *ngFor="let asset of assets">
+        <div class="example-box asset"
+             *ngIf="asset.show"
+             cdkDrag>
+          <div class="coinInfo"
+               [ngClass]="!asset.coingeckoname?'carInfo':''">
+            <img class="logo"
+                 *ngIf="asset.logo"
+                 src="../assets/logos/{{asset.logo}}.png" />
+            <div class="coinNameWrapper"
+                 *ngIf="asset.coingeckoname">
+              <p title="{{asset.name}}"
+                 class="coinName">{{asset.name}}</p>
+              <p class="coinFullName">{{asset.newname ? asset.newname : asset.coingeckoname}}</p>
+            </div>
+            <div class="carNameWrapper"
+                 *ngIf="!asset.coingeckoname">
+              <p title="{{asset.name}}"
+                 class="coinName">
+                {{asset.name}}
+              </p>
+            </div>
           </div>
-          <div class="carNameWrapper" *ngIf="!asset.coingeckoname">
-            <p title="{{asset.name}}" class="coinName">
-              {{asset.name}}
-            </p>
-          </div>
-        </div>
 
-        <input class="values"
-               type="text"
-               id="{{asset.name}}"
-               name="{{asset.name}}"
-               value="{{asset.value}}"
-               (input)="calculateValues(asset, $event)">
-        <button class="deleteButton"
-                (click)="removeAsset(asset)">
-          <mat-icon aria-hidden="false"
-                    aria-label="Example home icon">clear
-          </mat-icon>
-        </button>
-      </div>
+          <input class="values"
+                 type="text"
+                 id="{{asset.name}}"
+                 name="{{asset.name}}"
+                 value="{{asset.value}}"
+                 (input)="calculateValues(asset, $event)">
+          <button class="deleteButton"
+                  (click)="removeAsset(asset)">
+            <mat-icon aria-hidden="false"
+                      aria-label="Example home icon">clear
+            </mat-icon>
+          </button>
+        </div>
+      </ng-container>
+
+
     </div>
 
 
     <div class="select">
       <select (change)="addAsset($event)">
         <option selected>Add Item...</option>
-        <option *ngFor="let asset of remainingAssets"
-                [value]="asset.name">
-          {{asset.name.toUpperCase()}}
-        </option>
+        <ng-container *ngFor="let asset of assets">
+          <option *ngIf="!asset.show"
+                  [value]="asset.name">
+            {{asset.name.toUpperCase()}}
+          </option>
+        </ng-container>
       </select>
     </div>
   </div>
 
 
   <img class="images"
-       src="../assets/imgs/asset2.png"/>
+       src="../assets/imgs/asset2.png" />
 
   <div class="disclaimer">
     {{disclaimer}}
@@ -68,16 +78,21 @@
   <!-- <img class="images"
        src="../assets/imgs/asset3.png" /> -->
   <div>
-    <p><span class="heart">&hearts;</span><a class="extLink" target="_blank"
-                                             href="https://switcheo.network/">switcheo network</a></p>
-    <p><span class="heart">&hearts;</span><a class="extLink" target="_blank"
-                                             href="https://switcheo.exchange">switcheo exchange</a>
+    <p><span class="heart">&hearts;</span><a class="extLink"
+         target="_blank"
+         href="https://switcheo.network/">switcheo network</a></p>
+    <p><span class="heart">&hearts;</span><a class="extLink"
+         target="_blank"
+         href="https://switcheo.exchange">switcheo exchange</a>
     </p>
-    <p><span class="heart">&hearts;</span><a class="extLink" target="_blank "
-                                             href="https://switcheo.foundation/">switcheo foundation</a></p>
-    <p><span class="heart">&hearts;</span><a class="extLink" target="_blank"
-                                             href="https://dem.exchange/">demex</a></p>
-    <p><span class="heart">&hearts;</span><a class="extLink" target="_blank"
-                                             href="https://t.me/switcheomonitorbot">switcheo monitor bot</a></p>
+    <p><span class="heart">&hearts;</span><a class="extLink"
+         target="_blank "
+         href="https://switcheo.foundation/">switcheo foundation</a></p>
+    <p><span class="heart">&hearts;</span><a class="extLink"
+         target="_blank"
+         href="https://dem.exchange/">demex</a></p>
+    <p><span class="heart">&hearts;</span><a class="extLink"
+         target="_blank"
+         href="https://t.me/switcheomonitorbot">switcheo monitor bot</a></p>
   </div>
 </footer>

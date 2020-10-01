@@ -1,13 +1,14 @@
 export class Asset {
-    price: number;
-    name: string;
-    value: number;
-    coingeckoname: string;
-    newname: string;
-    logo: string;
+  price: number;
+  name: string;
+  show: boolean;
+  logo: string;
+  coingeckoname?: string;
+  value?: number;
+  newname?: string;
 
-    constructor(price: number, name: string) {
-        this.price = price;
-        this.name = name;
-    }
+  constructor(price: number, name: string) {
+    this.price = price;
+    this.name = name;
+  }
 }
