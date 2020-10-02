@@ -25,12 +25,10 @@
   }
 
   &__select {
-
     /* Remove IE arrow */
     select::-ms-expand {
       display: none;
     }
-
 
     position: relative;
     display: flex;
@@ -96,15 +94,17 @@
     justify-content: center;
     padding: 20px;
     background: rgb(31, 30, 30);
-    background: linear-gradient(90deg,
-        rgba(31, 30, 30, 1) 17%,
-        rgba(21, 59, 44, 1) 59%,
-        rgba(31, 30, 30, 1) 100%);
+    background: linear-gradient(
+      90deg,
+      rgba(31, 30, 30, 1) 17%,
+      rgba(21, 59, 44, 1) 59%,
+      rgba(31, 30, 30, 1) 100%
+    );
     color: white;
     font-family: "Segoe Print";
 
     .footerItem {
-      &__hearth {
+      &__heart {
         color: red;
         fill: red;
       }
@@ -198,7 +198,6 @@
       select {
         font-size: 14px;
       }
-
     }
   }
 
@@ -253,7 +252,6 @@
     }
   }
 }
-
 
 // style for material drag and drop
 .cdk-drag-placeholder {
