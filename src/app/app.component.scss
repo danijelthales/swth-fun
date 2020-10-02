@@ -1,3 +1,4 @@
+// style for dekstop
 .main {
   min-height: 100vh;
   overflow: hidden;
@@ -185,6 +186,7 @@
   }
 }
 
+// style for small screens
 @media (max-width: 520px) {
   .main {
     &__select {
@@ -252,6 +254,8 @@
   }
 }
 
+
+// style for material drag and drop
 .cdk-drag-placeholder {
   opacity: 0;
 }
