@@ -1,4 +1,4 @@
-.holder {
+.main {
   min-height: 100vh;
   overflow: hidden;
   display: flex;
@@ -6,161 +6,249 @@
   align-items: center;
   justify-content: space-between;
   background: #060a22;
-}
 
-.content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex: 1;
-  width: 100%;
-  justify-content: space-between;
+  &__images {
+    display: block;
+    max-width: 100%;
+    object-fit: contain;
+    max-height: 400px;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  &__select {
+
+    /* Remove IE arrow */
+    select::-ms-expand {
+      display: none;
+    }
+
+
+    position: relative;
+    display: flex;
+    width: 20em;
+    height: 3em;
+    line-height: 3;
+    background: #2c3e50;
+    overflow: hidden;
+    border-radius: 0.25em;
+    margin-top: 20px;
+
+    select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      -ms-appearance: none;
+      appearance: none;
+      outline: 0;
+      box-shadow: none;
+      border: 0 !important;
+      background: #2c3e50;
+      background-image: none;
+      flex: 1;
+      padding: 0 0.5em;
+      color: #fff;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    /* Arrow */
+    &::after {
+      content: "\25BC";
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 0 1em;
+      background: #34495e;
+      cursor: pointer;
+      pointer-events: none;
+      -webkit-transition: 0.25s all ease;
+      -o-transition: 0.25s all ease;
+      transition: 0.25s all ease;
+    }
+
+    /* Transition */
+    &:hover::after {
+      color: #f39c12;
+    }
+  }
+
+  &__disclaimer {
+    color: gray;
+    text-align: justify;
+    width: 50%;
+    min-width: 240px;
+    padding-bottom: 5em;
+    font-family: "Segoe Print";
+    text-align: center;
+  }
+
+  &__footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background: rgb(31, 30, 30);
+    background: linear-gradient(90deg,
+        rgba(31, 30, 30, 1) 17%,
+        rgba(21, 59, 44, 1) 59%,
+        rgba(31, 30, 30, 1) 100%);
+    color: white;
+    font-family: "Segoe Print";
+
+    .footerItem {
+      &__hearth {
+        color: red;
+        fill: red;
+      }
+
+      &__link {
+        font-size: 16px;
+        color: green;
+        margin: 4px;
+        text-transform: uppercase;
+      }
+    }
+  }
 }
 
 .assets {
   color: white;
-}
 
-.footer {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-  background: rgb(31, 30, 30);
-  background: linear-gradient(90deg,
-      rgba(31, 30, 30, 1) 17%,
-      rgba(21, 59, 44, 1) 59%,
-      rgba(31, 30, 30, 1) 100%);
-  color: white;
-  font-family: "Segoe Print";
-}
-
-.images {
-  display: block;
-  max-width: 100%;
-  object-fit: contain;
-  max-height: 400px;
-}
-
-input {
-  height: 40px;
-  font-size: 16px;
-  margin: 6px;
-}
-
-.deleteButton {
-  margin-left: 6px;
-  width: 30px;
-  height: 30px;
-  background: #9a1717;
-  border: none;
-  color: white;
-}
-
-.extLink {
-  font-size: 16px;
-  color: green;
-  margin: 4px;
-  text-transform: uppercase;
-}
-
-.asset {
-  display: flex;
-  align-items: center;
-  padding: 20px 10px;
-  color: white;
-  cursor: move;
-
-  .coinInfo {
+  &__asset {
     display: flex;
-    margin-right: 40px;
-    width: 150px;
     align-items: center;
+    padding: 20px 10px;
+    color: white;
+    cursor: move;
 
-    .logo {
-      height: 40px;
-      object-fit: contain;
-      margin-right: 20px;
+    .assetItem {
+      display: flex;
+      margin-right: 40px;
+      width: 150px;
+      align-items: center;
+
+      &__logo {
+        height: 40px;
+        object-fit: contain;
+        margin-right: 20px;
+      }
+
+      &__coin {
+        width: 100%;
+        font-family: Consolas;
+      }
+
+      &__car {
+        &--name {
+          font-size: 14px;
+        }
+      }
+
+      &__name {
+        text-transform: uppercase;
+        font-size: 20px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      &__fullName {
+        text-transform: lowercase;
+        font-size: 14px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+
+  &__value {
+    height: 40px;
+    font-size: 16px;
+    margin: 6px;
+  }
+
+  &__delete {
+    margin-left: 6px;
+    width: 30px;
+    height: 30px;
+    background: #9a1717;
+    border: none;
+    color: white;
+  }
+}
+
+@media (max-width: 520px) {
+  .main {
+    &__select {
+      width: 300px;
+      margin-top: 10px;
+      height: 2.4em;
+      line-height: 2.4em;
+
+      select {
+        font-size: 14px;
+      }
+
+    }
+  }
+
+  .assets {
+    max-width: 100vw;
+
+    &__asset {
+      padding: 0;
+      margin: 20px 16px 20px 10px;
+
+      .assetItem {
+        margin-right: 6px;
+        max-width: 120px;
+
+        &__logo {
+          height: 30px;
+          width: 50px;
+          margin-right: 10px;
+        }
+
+        &__coin {
+          width: 100%;
+          font-family: Consolas;
+        }
+
+        &__car {
+          &--name {
+            font-size: 12px;
+          }
+        }
+
+        &__name {
+          font-size: 16px;
+          max-width: 100px;
+        }
+
+        &__fullName {
+          font-size: 12px;
+        }
+      }
     }
 
-    .coinNameWrapper {
-      width: 100%;
-      font-family: Consolas;
-    }
-
-    .coinName {
-      text-transform: uppercase;
-      font-size: 20px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .coinFullName {
-      text-transform: lowercase;
+    &__value {
+      width: 100px;
+      height: 30px;
       font-size: 14px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
-  }
-}
 
-select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -ms-appearance: none;
-  appearance: none;
-  outline: 0;
-  box-shadow: none;
-  border: 0 !important;
-  background: #2c3e50;
-  background-image: none;
-}
-
-/* Remove IE arrow */
-select::-ms-expand {
-  display: none;
-}
-
-/* Custom Select */
-.select {
-  position: relative;
-  display: flex;
-  width: 20em;
-  height: 3em;
-  line-height: 3;
-  background: #2c3e50;
-  overflow: hidden;
-  border-radius: 0.25em;
-  margin-top: 20px;
-
-  select {
-    flex: 1;
-    padding: 0 0.5em;
-    color: #fff;
-    cursor: pointer;
-    font-size: 18px;
-  }
-
-  /* Arrow */
-  &::after {
-    content: "\25BC";
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 0 1em;
-    background: #34495e;
-    cursor: pointer;
-    pointer-events: none;
-    -webkit-transition: 0.25s all ease;
-    -o-transition: 0.25s all ease;
-    transition: 0.25s all ease;
-  }
-
-  /* Transition */
-  &:hover::after {
-    color: #f39c12;
+    &__delete {
+      height: 24px;
+      width: 24px;
+    }
   }
 }
 
@@ -172,92 +260,6 @@ select::-ms-expand {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+.cdk-drop-list-dragging .assets__asset:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-}
-
-
-.disclaimer {
-  color: gray;
-  text-align: justify;
-  width: 50%;
-  min-width: 240px;
-  padding-bottom: 5em;
-  font-family: "Segoe Print";
-  text-align: center;
-}
-
-.heart {
-  color: red;
-  fill: red;
-}
-
-.carNameWrapper p {
-  text-transform: none !important;
-  white-space: initial !important;
-  font-size: 14px !important;
-}
-
-
-@media (max-width: 520px) {
-  .assets {
-    max-width: 100vw !important;
-  }
-
-  .asset {
-    padding: 0;
-    margin: 20px 16px 20px 10px;
-  }
-
-  .logo {
-    height: 30px !important;
-    width: 30px !important;
-    margin-right: 10px !important;
-  }
-
-  .coinName {
-    font-size: 16px !important;
-    max-width: 100px;
-  }
-
-  .coinFullName {
-    font-size: 12px !important;
-  }
-
-  .coinInfo {
-    margin-right: 6px !important;
-    max-width: 120px !important;
-
-    .logo {
-      height: 30px !important;
-      width: 50px !important;
-    }
-  }
-
-
-  .carNameWrapper p {
-    font-size: 12px !important;
-  }
-
-  input {
-    width: 100px !important;
-    height: 30px !important;
-    font-size: 14px;
-  }
-
-  .select {
-    width: 300px;
-    margin-top: 10px;
-    height: 2.4em;
-    line-height: 2.4em;
-
-    select {
-      font-size: 14px;
-    }
-  }
-
-  .deleteButton {
-    height: 24px;
-    width: 24px;
-  }
 }
