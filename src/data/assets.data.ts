@@ -134,12 +134,4 @@ export const assets = [
     logo: 'neon-exchange',
     show: false,
   },
-
-  {
-    name: 'bch',
-    price: 0,
-    coingeckoname: 'bitcoin-cash',
-    logo: 'bitcoin-cash',
-    show: false,
-  },
 ];
