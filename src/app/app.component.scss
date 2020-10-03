@@ -85,8 +85,7 @@
     min-width: 240px;
     margin-top: 80px;
     text-align: center;
-    font-family: cursive;
-    font-style: italic;
+    font-family: 'segoe';
   }
 
   &__footer {
@@ -99,7 +98,7 @@
         rgba(21, 59, 44, 1) 59%,
         rgba(31, 30, 30, 1) 100%);
     color: white;
-    font-family: cursive;
+    font-family: 'segoe';
     font-style: italic;
 
     .footerItem {
@@ -133,7 +132,7 @@
       margin-right: 40px;
       width: 150px;
       align-items: center;
-      font-family: monospace;
+      font-family: 'consolas';
 
       &__logo {
         height: 40px;

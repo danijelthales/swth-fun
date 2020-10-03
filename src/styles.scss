@@ -8,3 +8,13 @@ html {
   position: relative;
   min-height: 100%;
 }
+
+@font-face {
+  font-family: segoe;
+  src: url(assets/fonts/segoe.ttf) format("opentype");
+}
+
+@font-face {
+  font-family: consolas;
+  src: url(assets/fonts/consolas.ttf) format("opentype");
+}
