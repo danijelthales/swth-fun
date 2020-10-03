@@ -5,9 +5,8 @@
     <div cdkDropList
          class="assets"
          (cdkDropListDropped)="drop($event)">
-      <ng-container *ngFor="let asset of assets">
+      <ng-container *ngFor="let asset of assetsToShow">
         <div class="assets__asset"
-             *ngIf="asset.show"
              cdkDrag>
           <div class="assetItem"
                [ngClass]="!asset.coingeckoname?'carInfo':''">
@@ -52,9 +51,8 @@
     <div class="main__select">
       <select (change)="addAsset($event)">
         <option selected>Add Item...</option>
-        <ng-container *ngFor="let asset of assets">
-          <option *ngIf="!asset.show"
-                  [value]="asset.name">
+        <ng-container *ngFor="let asset of remainingAssets">
+          <option [value]="asset.name">
             {{asset.name.toUpperCase()}}
           </option>
         </ng-container>
