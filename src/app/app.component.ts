@@ -79,17 +79,16 @@ export class AppComponent {
     const name = event.target.value;
     this.remainingAssets.forEach((a, i) => {
       if (a.name === name) {
-        this.remainingAssets.splice(i, 0);
+        this.remainingAssets.splice(i, 1);
         this.assetsToShow.push(a);
       }
     });
-    console.log(this.assetsToShow);
   }
 
   public removeAsset(asset: Asset) {
     this.assetsToShow.forEach((a, i) => {
       if (a === asset) {
-        this.assetsToShow.splice(i, 0);
+        this.assetsToShow.splice(i, 1);
         this.remainingAssets.push(a);
       }
     });

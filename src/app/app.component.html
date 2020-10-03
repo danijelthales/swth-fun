@@ -32,7 +32,7 @@
                  type="text"
                  id="{{asset.name}}"
                  name="{{asset.name}}"
-                 [ngModel]="asset.name | swtDecimal: asset.value"
+                 [ngModel]="asset.value | swtDecimal"
                  maxlength="13"
                  (input)="calculateValues(asset, $event)">
           <button class="assets__delete"
@@ -43,8 +43,6 @@
           </button>
         </div>
       </ng-container>
-
-
     </div>
 
 
@@ -61,7 +59,7 @@
   </div>
 
   <div class="main__disclaimer">
-    {{disclaimer}}
+    <p>{{disclaimer}}</p>
   </div>
 
   <img class="main__images"

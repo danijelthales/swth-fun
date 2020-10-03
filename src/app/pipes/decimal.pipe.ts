@@ -1,15 +1,21 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+const DECIMALS_DESKTOP = 13;
+const DECIMALS_MOBILE = 5;
+
 @Pipe({ name: 'swtDecimal' })
 export class SwtDecimal implements PipeTransform {
-  transform(name: any, value: any): any {
-    if (window.innerWidth < 520) {
-      if (name === 'btc') {
-        return Math.round(value * Math.pow(10, 5)) / Math.pow(10, 5);
-      }
-      return Math.round(value * Math.pow(10, 2)) / Math.pow(10, 2);
+  transform(value: any): any {
+    if (window.innerWidth > 520) {
+      return (
+        Math.round(value * Math.pow(10, DECIMALS_DESKTOP)) /
+        Math.pow(10, DECIMALS_DESKTOP)
+      );
     } else {
-      return Math.round(value * Math.pow(10, 13)) / Math.pow(10, 13);
+      return (
+        Math.round(value * Math.pow(10, DECIMALS_MOBILE)) /
+        Math.pow(10, DECIMALS_MOBILE)
+      );
     }
   }
 }
