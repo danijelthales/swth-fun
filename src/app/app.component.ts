@@ -1,9 +1,9 @@
-import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
-import { assets } from '@data/assets.data';
-import { Asset } from '@models/assets';
-import { interval } from 'rxjs';
+import {CdkDragDrop} from '@angular/cdk/drag-drop';
+import {HttpClient} from '@angular/common/http';
+import {Component} from '@angular/core';
+import {assets} from '@data/assets.data';
+import {Asset} from '@models/assets';
+import {interval} from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +11,9 @@ import { interval } from 'rxjs';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+
+  localStorage: Storage;
+
   title = 'swth-fun';
 
   disclaimer =
@@ -24,16 +27,22 @@ export class AppComponent {
 
   constructor(private httpClient: HttpClient) {
     this.assets = assets;
-    this.assetsToShow = this.assets.filter((asset) => asset.show);
-    this.remainingAssets = this.assets.filter((asset) => !asset.show);
+    this.localStorage = window.localStorage;
+    if (this.isLocalStorageSupported && this.localStorage.getItem('assetsToShow')) {
+      this.assetsToShow = JSON.parse(this.localStorage.getItem('assetsToShow'));
+      this.remainingAssets = JSON.parse(this.localStorage.getItem('remainingAssets'));
+    } else {
+      this.assetsToShow = this.assets.filter((asset) => asset.show);
+      this.remainingAssets = this.assets.filter((asset) => !asset.show);
+    }
     this.swthAsset = assets[0];
     this.getPrices(this.assets);
     const source = interval(1000 * 60);
     source.subscribe((val) => this.getPrices(this.assets));
   }
 
-  public getPrices(assets) {
-    assets.forEach((a) => {
+  public getPrices(assetsToCheck) {
+    assetsToCheck.forEach((a) => {
       if (a.coingeckoname) {
         this.httpClient
           .get('https://api.coingecko.com/api/v3/coins/' + a.coingeckoname)
@@ -83,6 +92,11 @@ export class AppComponent {
         this.assetsToShow.push(a);
       }
     });
+    if (this.isLocalStorageSupported) {
+      this.localStorage.setItem('assetsToShow', JSON.stringify(this.assetsToShow));
+      this.localStorage.setItem('remainingAssets', JSON.stringify(this.remainingAssets));
+    }
+
   }
 
   public removeAsset(asset: Asset) {
@@ -92,6 +106,10 @@ export class AppComponent {
         this.remainingAssets.push(a);
       }
     });
+    if (this.isLocalStorageSupported) {
+      this.localStorage.setItem('assetsToShow', JSON.stringify(this.assetsToShow));
+      this.localStorage.setItem('remainingAssets', JSON.stringify(this.remainingAssets));
+    }
   }
 
   drop(event: CdkDragDrop<Asset[]>) {
@@ -110,4 +128,10 @@ export class AppComponent {
     array.splice(newIndex, 0, array.splice(oldIndex, 1)[0]);
     return array; // for testing
   }
+
+
+  get isLocalStorageSupported(): boolean {
+    return !!this.localStorage;
+  }
+
 }
