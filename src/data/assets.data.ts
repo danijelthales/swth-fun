@@ -127,11 +127,11 @@ export const assets = [
     show: false,
   },
   {
-    name: 'nex',
-    newname: 'nash',
+    name: 'zwap',
+    newname: 'zilswap ',
     price: 0,
-    coingeckoname: 'neon-exchange',
-    logo: 'neon-exchange',
+    coingeckoname: 'zilswap',
+    logo: 'zilswap',
     show: false,
   },
 ];
